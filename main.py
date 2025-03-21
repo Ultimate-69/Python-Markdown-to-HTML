@@ -34,7 +34,9 @@ def convert_to_html(line):
                 else:
                     hashtag_count = 6
         line = line[hashtag_count:]
-        line = f"<h{hashtag_count}>" + line.strip() + f"<h{hashtag_count}>\n"
+        line = f"<h{hashtag_count}>" + line.strip() + f"</h{hashtag_count}>\n"
+    if line.strip() == "---" or line.strip() == "***":
+        line = "<hr>\n"
     return line
 
 if __name__ == "__main__":
