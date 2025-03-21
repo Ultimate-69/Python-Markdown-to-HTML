@@ -25,6 +25,16 @@ def main():
 
 
 def convert_to_html(line):
+    if line[0] == "#":
+        hashtag_count = 0
+        for i in line:
+            if i == "#":
+                if hashtag_count <= 5:
+                    hashtag_count += 1
+                else:
+                    hashtag_count = 6
+        line = line[hashtag_count:]
+        line = f"<h{hashtag_count}>" + line.strip() + f"<h{hashtag_count}>\n"
     return line
 
 if __name__ == "__main__":
