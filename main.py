@@ -1,4 +1,5 @@
 import os
+import re
 
 def main():
     path_to_file = str(input("Enter the path to your md file: "))
@@ -44,8 +45,9 @@ def convert_to_html(line):
         if line.strip() != "":
             line = "<p>" + line.strip() + "</p>\n"
 
-    for char in line:
-        print(char)pass
+    line = re.sub(r"\*\*(.*?)\*\*", r"<strong>\1</strong>", line) # bold
+    line = re.sub(r"\~\~(.*?)\~\~", r"<del>\1</del>", line)  # strikethrough
+    line = re.sub(r"\*(.*?)\*", r"<em>\1</em>", line)  # italic
     return line
 
 if __name__ == "__main__":
