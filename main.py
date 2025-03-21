@@ -35,8 +35,17 @@ def convert_to_html(line):
                     hashtag_count = 6
         line = line[hashtag_count:]
         line = f"<h{hashtag_count}>" + line.strip() + f"</h{hashtag_count}>\n"
-    if line.strip() == "---" or line.strip() == "***":
+    elif line[0] == ">":
+        line = line[1:]
+        line = "<blockquote>" + line.strip() + "</blockquote>\n"
+    elif line.strip() == "---" or line.strip() == "***":
         line = "<hr>\n"
+    else:
+        if line.strip() != "":
+            line = "<p>" + line.strip() + "</p>\n"
+
+    for char in line:
+        print(char)pass
     return line
 
 if __name__ == "__main__":
